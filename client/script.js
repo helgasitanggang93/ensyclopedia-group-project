@@ -29,7 +29,7 @@ function getVideo() {
     event.preventDefault();
    
     $.ajax({
-        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${annotate}&type=video&key=AIzaSyDKo47lqPDAv1Bt_ox736vR0DfbNJzEHyw`,
+        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${annotate}&type=video&key=AIzaSyCs_o7rRNwa5Ou13KjWTKR1-b6oVlTyOAI`,
         method : 'GET',
     })
     .done( response => {
@@ -44,7 +44,7 @@ function getVideo() {
 
 function getTranslate(params) {
     event.preventDefault();
-    let lang = 'id'
+    let lang = $('#language').val()
     console.log(text,);
     
     $.ajax({
