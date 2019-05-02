@@ -29,14 +29,24 @@
 
     </div>
     <div class="container" id="halaman-utama">
-        <div class="row" id="image-extract">
+        <div class="m-3 row" id="image-extract">
             <div class="col text-center" id="image">
                 <h1>image</h1>
             </div>
             <div class="col text-center" id="extract">
                 <h3 id="extract-title"></h3>
                 <p id="extract-paragraph"></p>
+                <div>
+                        <select class="m-3 form-control" id="language">
+                            <option>ru</option>
+                            <option>id</option>
+                            <option>it</option>
+                            <option>zh</option>
+                            <option>ar</option>
+                        </select>
+                </div>
                 <div class="row">
+                   
                     <div class="col text-center" id="image">
                         <button type="button" class="btn btn-danger" onclick="getTranslate()">Translate!</button>
                     </div>
