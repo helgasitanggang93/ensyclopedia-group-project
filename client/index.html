@@ -22,8 +22,7 @@
     <div class="container">
         <div class="m-3 row" id="button-area">
             <div class="col text-center">
-                <button type="button" class="btn btn-danger">Generate</button>
-
+                <button type="button" class="btn btn-danger" onclick="getData()">Generate</button>
             </div>
 
         </div>
@@ -37,18 +36,16 @@
             <div class="col text-center" id="extract">
                 <h3 id="extract-title"></h3>
                 <p id="extract-paragraph"></p>
-
+                <div class="row">
+                    <div class="col text-center" id="image">
+                        <button type="button" class="btn btn-danger" onclick="getTranslate()">Translate!</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="m-4 row" id="video">
-            <div class="col text-center">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/O0irSt5p8cY" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-
-            </div>
-
+        <div class="m-4 row">
+            <div class="col text-center" id="video"></div>
         </div>
 
 
