@@ -61,7 +61,8 @@ function getVideo() {
         headers : {annotate}
     })
     .done( response => {
-   
+        console.log(response);
+        
         $('#video').html(`
             <iframe width="560" height="315" src="https://www.youtube.com/embed/${response.items[0].id.videoId}?autoplay=1"></iframe>`   
         )
