@@ -30,6 +30,36 @@ function getData() {
     })
 }
 
+function searchData() {
+    event.preventDefault()
+    
+    let query = $('#query').val()
+    console.log(query,'===');
+    
+    $.ajax({
+        url : `https://en.wikipedia.org/api/rest_v1/page/summary/${query}`,
+        method: 'GET'
+    })
+    .done(function(response) {
+        console.log(response)
+        annotate = response.title
+        $("#extract-title").html(``);
+        $("#extract-title").append(`${response.title}`);
+        text = response.extract
+        $("#extract-paragraph").html(``);
+        $("#extract-paragraph").append(`${response.extract}`);
+        $("#image").html(``);
+        $("#image").append(`<img src=${response.thumbnail.source} class="rounded mx-auto d-block">`);
+
+        getVideo()
+
+        getTextEntities(response.extract)
+    })
+    .fail(function(jqXHR, textStatus) {
+        console.log('request fail', textStatus)
+    })
+}
+
 function getTextEntities(text) {
     $.ajax({
         url : 'http://localhost:3000/analyze',
@@ -39,7 +69,7 @@ function getTextEntities(text) {
     .done(function(response) {
         console.log(response)
         globalEntities = []
-        
+        $('#entities').html('')
         response.forEach(res => {
             let template = 
             `<a href="https://www.google.com/search?q=${res.name}"><span class="badge badge-pill badge-primary">${res.name}</span></a>&nbsp`
