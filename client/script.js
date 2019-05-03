@@ -20,14 +20,12 @@ function getData() {
         $("#extract-paragraph").append(`${response.extract}`);
         $("#image").html(``);
         $("#image").append(`<img src=${response.thumbnail.source} class="rounded mx-auto d-block">`);
-
         getVideo()
-
+        getNews()
         getTextEntities(response.extract)
     })
     .fail(function(jqXHR, textStatus) {
         console.log('request fail', textStatus)
-        
     })
 }
 
@@ -100,6 +98,35 @@ function getVideo() {
     })
     .fail((err) => {
         console.log(err);
+    })
+}
+
+function getNews(){
+    console.log(`http://localhost:3000/google-news/${annotate}&pageSize=5`)
+    $.ajax({
+        url:`http://localhost:3000/google-news/${annotate}&pageSize=5`,
+        method:'GET'
+    })
+    .done(response => {
+        console.log(response)
+        $('#news').html('')
+        if(response.length == 0){
+            $('#news').html(`<h1 style="color:black">News not found<h1>`)
+        }
+        else{
+            for(let news of response){
+                $('#news').append(`<div class="card" style="width: 18rem; display:block;">
+                <img class="card-img-top" src="${news.urlToImage}" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-text" style="color:black">${news.title}</h5>
+                <a href="${news.url}" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>`)
+            }
+        }
+    })
+    .fail(function(jqXHR, textStatus) {
+        console.log('request fail', textStatus)
     })
 }
 

@@ -7,7 +7,7 @@ class YoutubeContoller {
         
        let {annotate} = req.headers
        
-        axios
+        /* axios
             .get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${annotate}&type=video&key=${process.env.YOUTUBE}`)
             .then(({ data }) => {
                 res.status(200).json(data)
@@ -15,7 +15,7 @@ class YoutubeContoller {
             })
             .catch((err) => {
                 res.status(500).json(err)
-            })
+            }) */
     }
 }
 
