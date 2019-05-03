@@ -29,7 +29,7 @@ class userController {
                 else if (!compare(password, findOneUser.password)) res.status(401).json({ message: 'Email/Password is incorrect!' })
                 else {
                     const { id, first_name, last_name, email } = findOneUser
-                    const payload = { id, first_name, last_name, email }
+                    const payload = { id, email }
                     const token = sign(payload)
                     req.headers.token = token
                     res.status(200).json({
