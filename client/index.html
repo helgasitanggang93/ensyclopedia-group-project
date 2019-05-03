@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="148047188809-63sn1iv1ldifsipk7e4q74a03g07ggjd.apps.googleusercontent.com">
     <link rel="stylesheet" href="style.css">
     <title>Encyclopedia</title>
 </head>
@@ -20,7 +22,8 @@
         <a class="navbar-brand">Encyclopedia</a>
         <form class="form-inline" onsubmit="searchData()">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="query">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signIn">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signOut" onclick="signout()">SignOut</button>
         </form>
     </nav>
 
@@ -39,14 +42,19 @@
                             <label for="password">Password</label>
                             <input type="password" class="form-control" required id="password" placeholder="Password">
                         </div>
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-3">
                             <div class="row align-items-center">
                                 <div class="col d-flex justify-content-center submitDiv">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
+                            </div>
+                            <div class="row align-items-center mt-3">
                                 <div class="col d-flex justify-content-center">
                                     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                                    </fb:login-button>    
+                                    </fb:login-button>   
+                                </div>
+                                <div class="col d-flex justify-content-center">
+                                    <div class="g-signin2" data-onsuccess="onSignIn"></div> 
                                 </div>
                             </div>
                         </div>

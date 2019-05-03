@@ -6,6 +6,7 @@ const Youtube = require('../controllers/youtube')
 
 router.post('/signup', userController.register)
 router.post('/signin', userController.login)
+router.post('/gSignIn', userController.googleSign)
 
 router.post('/analyze', TextAnalyzer.analyze)
 router.get('/youtube', Youtube.show)
