@@ -51,7 +51,7 @@ function searchData() {
         $("#image").append(`<img src=${response.thumbnail.source} class="rounded mx-auto d-block">`);
 
         getVideo()
-
+        getNews()
         getTextEntities(response.extract)
     })
     .fail(function(jqXHR, textStatus) {
