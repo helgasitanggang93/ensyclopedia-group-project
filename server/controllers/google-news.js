@@ -14,7 +14,7 @@ class Controller{
             res.status(200).json(data.articles)
         })
         .catch(err => {
-            console.log(err);
+            console.log(err.response,'response');
             
             res.status(500).json({
                 message:'Error'
