@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="148047188809-63sn1iv1ldifsipk7e4q74a03g07ggjd.apps.googleusercontent.com"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Encyclopedia</title>
+  </head>
+
+  <body>
+    <div class="mw-100 bg-image"></div>
+    <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=637176820060323&autoLogAppEvents=1"
+    ></script>
+
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand">Encyclopedia</a>
+      <form class="form-inline" onsubmit="searchData()">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          id="query"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signOut" onclick="signout()">SignOut</button>
+      </form>
+    </nav>
+
+    <div class="container mt-5" id="loginPage" data-aos="fade-up"
+    data-aos-duration="3000">
+      <div class="row">
+        <div
+          class="col-lg-4 col-sm-8 col-md-8 offset-lg-4 align-items-center loginPanel"
+          id="loginPanel"
+        >
+          <form method="POST" id="loginForm" style="color:white">
+            <div class="form-group mb-5">
+              <h2>Login</h2>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                required
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                required
+                id="password"
+                placeholder="Password"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <div class="row align-items-center">
+                <div class="col d-flex justify-content-center submitDiv">
+                  <button type="submit" class="btn ghost-button">Submit</button>
+                </div>
+              </div>
+              <div class="row align-items-center mt-3">
+                <div class="col d-flex justify-content-center">
+                  <fb:login-button
+                    scope="public_profile,email"
+                    onlogin="checkLoginState();"
+                  >
+                  </fb:login-button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="main-content">
+      <div class="m-3 row" id="button-area">
+        <div class="col text-center">
+          <button type="button" class="btn ghost-button" onclick="getData()">
+            Generate
+          </button>
+        </div>
+      </div>
+
+      <div class="m-3 row" id="image-extract">
+        <div class="m-3 col text-center" id="image">
+          <h1>image</h1>
+        </div>
+        <div class="m-3 col text-center border border-white" id="extract">
+          <h3 id="extract-title"></h3>
+          <p id="extract-paragraph"></p>
+          <div>
+            <select class="m-1 form-control" id="language">
+              <option>ru</option>
+              <option>id</option>
+              <option>it</option>
+              <option>zh</option>
+              <option>ar</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col text-center" id="image">
+              <button
+                type="button"
+                class="m-2 btn ghost-button"
+                onclick="getTranslate()"
+              >
+                Translate!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-5 entityPanel">
+        <div class="row ml-2 w-100">
+          <h2>Entities</h2>
+        </div>
+        <div class="row">
+          <div
+            class="m-1 col border border-white text-center"
+            id="entities"
+          ></div>
+        </div>
+      </div>
+
+      <div class="m-4 row">
+        <div class="sm-2 col text-center border border-white" id="video"></div>
+      </div>
+
+      <div id="news" style="display:flex;"></div>
+    </div>
+
+    </div> -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
