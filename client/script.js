@@ -72,7 +72,7 @@ function getTextEntities(text) {
         $('#entities').html('')
         response.forEach(res => {
             let template = 
-            `<a href="https://www.google.com/search?q=${res.name}"><span class="badge badge-pill badge-primary">${res.name}</span></a>&nbsp`
+            `<a href="https://www.google.com/search?q=${res.name}"><span class="m-1 badge badge-pill badge-dark">${res.name}</span></a>&nbsp`
             $('#entities').append(template)
             globalEntities.push(res.name)
         })
@@ -91,7 +91,7 @@ function getVideo() {
         headers : {annotate}
     })
     .done( response => {
-        console.log(response);
+        console.log(response,'=====');
         
         $('#video').html(`
             <iframe width="560" height="315" src="https://www.youtube.com/embed/${response.items[0].id.videoId}?autoplay=1"></iframe>`   
@@ -146,7 +146,15 @@ $('#loginForm').on('submit', function() {
 
 })
 $(document).ready(function () {
-    getData()
+    let token = localStorage.getItem('wikwik_token')
+    if (token) {
+        getData()
+        $('#loginPage').hide()
+        $('#main-content').show()
+    } else {
+        $('#loginPage').show()
+        $('#main-content').hide()
+    }
 })
 
 
