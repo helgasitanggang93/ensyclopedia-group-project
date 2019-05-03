@@ -1,6 +1,7 @@
 let annotate = null;
 let text = null;
 var globalEntities = []
+var token = localStorage.getItem('wikwik_token')
 
 let baseURL = 'http://localhost:3000'
 
@@ -137,23 +138,70 @@ $('#loginForm').on('submit', function() {
         }
     })
     .done(function(data) {
-        localStorage.setItem('wikwik_token', data.token)
-        $('#loginPanel').hide()
+       isToken()
+       localStorage.setItem('wikwik_token', data.token)
+        // $('#loginPanel').hide()
     })
     .fail(function(err) {
         console.log(err);
     })
 
 })
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log("Name: " + profile.getName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
+  
+    var id_token = googleUser.getAuthResponse().id_token;
+  
+    $.ajax({
+      url: "http://localhost:3000/gSignIn",
+      method: "POST",
+      data: {
+        token: id_token
+      }
+    })
+      .done(response => {
+        console.log(response);
+        localStorage.setItem("token", response);
+        isToken();
+      })
+      .fail((jqXHR, textStatus) => {
+        console.log(jqXHR, textStatus);
+      });
+}
+
+function signout() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+        console.log("User signed out.");
+    });
+    localStorage.clear()
+    $('#loginPage').show()
+    $('#main-content').hide()
+    $('#signOut').hide()
+    $('#signIn').show()
+}
+
+function isToken() {
+    getData()
+    $('#loginPage').hide()
+    $('#signIn').hide()
+    $('#signOut').show()
+    $('#main-content').show()
+}
+
 $(document).ready(function () {
-    let token = localStorage.getItem('wikwik_token')
     if (token) {
-        getData()
-        $('#loginPage').hide()
-        $('#main-content').show()
+        isToken()
     } else {
         $('#loginPage').show()
         $('#main-content').hide()
+        $('#signOut').hide()
+        $('#signIn').show()
     }
 })
 
