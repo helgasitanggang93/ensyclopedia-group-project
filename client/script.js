@@ -2,6 +2,8 @@ let annotate = null;
 let text = null;
 var globalEntities = []
 
+let baseURL = 'http://localhost:3000'
+
 function getData() {
     $.ajax({
         url : 'https://en.wikipedia.org/api/rest_v1/page/random/summary',
@@ -54,10 +56,12 @@ function getVideo() {
     event.preventDefault();
    
     $.ajax({
-        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${annotate}&type=video&key=AIzaSyCs_o7rRNwa5Ou13KjWTKR1-b6oVlTyOAI`,
+        url: `${baseURL}/youtube`,
         method : 'GET',
+        headers : {annotate}
     })
     .done( response => {
+   
         $('#video').html(`
             <iframe width="560" height="315" src="https://www.youtube.com/embed/${response.items[0].id.videoId}?autoplay=1"></iframe>`   
         )
