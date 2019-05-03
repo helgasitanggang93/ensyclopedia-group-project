@@ -1,5 +1,6 @@
 let annotate = null;
 let text = null;
+var globalEntities = []
 
 function getData() {
     $.ajax({
@@ -19,6 +20,30 @@ function getData() {
 
         getVideo()
 
+        getTextEntities(response.extract)
+    })
+    .fail(function(jqXHR, textStatus) {
+        console.log('request fail', textStatus)
+        
+    })
+}
+
+function getTextEntities(text) {
+    $.ajax({
+        url : 'http://localhost:3000/analyze',
+        method: 'POST',
+        data: {text: text},
+    })
+    .done(function(response) {
+        console.log(response)
+        globalEntities = []
+        
+        response.forEach(res => {
+            let template = 
+            `<a href="https://www.google.com/search?q=${res.name}"><span class="badge badge-pill badge-primary">${res.name}</span></a>&nbsp`
+            $('#entities').append(template)
+            globalEntities.push(res.name)
+        })
     })
     .fail(function(jqXHR, textStatus) {
         console.log('request fail', textStatus)
