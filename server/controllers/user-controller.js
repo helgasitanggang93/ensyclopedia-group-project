@@ -25,8 +25,6 @@ class userController {
             //const domain = payload['hd'];
           }
           verify().catch(error => {
-              console.log(error);
-              
               res.status(500).json(error)
           });
     }
