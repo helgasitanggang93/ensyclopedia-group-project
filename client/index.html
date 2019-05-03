@@ -7,11 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<<<<<<< HEAD
     <link rel="stylesheet" href="style.css">
+=======
+       <link rel="stylesheet" href="style.css">
+>>>>>>> backgrond first
     <title>Encyclopedia</title>
 </head>
 
 <body>
+<<<<<<< HEAD
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=637176820060323&autoLogAppEvents=1"></script>
     
@@ -100,6 +105,58 @@
     </div>
     <!-- 
     <div class="container" id="halaman-utama">
+=======
+    <div class="bg-image"></div>
+    <div>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand">Encyclopedia</a>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
+        
+        
+        <div class="container" id="halaman-utama">
+            <div class="m-3 row" id="button-area">
+                <div class="col text-center">
+                    <button type="button" class="btn ghost-button" onclick="getData()">Generate</button>
+                </div>
+    
+            </div>
+            <div class="m-3 row" id="image-extract">
+                    <div class="m-2 col text-center border border-white hitam" id="image">
+                        <h1>image</h1>
+                    </div>
+                    <div class="m-2 col text-center border border-white hitam" id="extract">
+                        <h3 id="extract-title"></h3>
+                        <p id="extract-paragraph"></p>
+                        <div>
+                                <select class="m-1 form-control" id="language">
+                                    <option>ru</option>
+                                    <option>id</option>
+                                    <option>it</option>
+                                    <option>zh</option>
+                                    <option>ar</option>
+                                </select>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col text-center" id="image">
+                                <button type="button" class="m-2 btn ghost-button" onclick="getTranslate()">Translate!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="m-4 row">
+                    <div class="col text-center border border-white" id="video"></div>
+                </div>
+    
+        </div>
+    </div>
+    <!-- <div class="container bg-image" id="halaman-utama">
+>>>>>>> backgrond first
         <div class="m-3 row" id="image-extract">
             <div class="col text-center" id="image">
                 <h1>image</h1>
