@@ -20,7 +20,7 @@ function getData() {
         $("#extract-paragraph").append(`${response.extract}`);
         $("#image").html(``);
         $("#image").append(`<img src=${response.thumbnail.source} class="rounded mx-auto d-block">`);
-        //getVideo()
+        getVideo()
         getNews()
         getTextEntities(response.extract)
     })
