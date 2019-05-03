@@ -29,7 +29,6 @@ function getData() {
 }
 
 function getTextEntities(text) {
-    console.log(`------------------`);
     $.ajax({
         url : 'http://localhost:3000/analyze',
         method: 'POST',
